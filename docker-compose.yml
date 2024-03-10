@@ -11,6 +11,8 @@ services:
     # mapeo de puertos para acceder desde mi maquina
     ports:
       - "8069:8069"
+    volumes:
+      - ./extra-addons:/mnt/extra-addons
     # variables de entorno
     environment:
       # nombre o ip del gestor de base de datos
