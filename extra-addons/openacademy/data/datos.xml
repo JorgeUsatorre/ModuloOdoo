@@ -1,0 +1,9 @@
+ <odoo>
+    <data>
+        <record model="test_model" id="openacademy.nombres">
+            <field name="name">Paco</field>
+            <field name="description">69</field>
+        </record>
+    </data>
+</odoo>
+
