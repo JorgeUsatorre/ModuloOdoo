@@ -80,3 +80,69 @@ Una vez creamos el modulo de openacademy nos dirigiremos a la carpeta models y d
 
 ![Models.png](Imagenes/Models.png)
 
+## Creacion de la vista
+En este paso debemos situarnos en la carpeta de views y debemos modificar el archivo `viws.xml`. Una vez dentro del archivo debemos descomentar y modificar algunas lineas del siguiente codigo:
+
+En esta parte del codigo debemos modificar el apartado `<field name="model">` por el nombre de la tabla que hemos creado, en mi caso `test_model`
+![Views.png](Imagenes/Views.png)
+
+En estaparte del codigo debemos modificar el apartado `<field name"res_model">` por el nombre de nuestra tabla, en mi caso `test_model`
+
+![Views2.png](Imagenes/Views2.png)
+
+En esta parte del codigo no es necesario modificar nada simplemente debemos descomentar esta parte del codigo.
+
+![Views3.png](Imagenes/Views3.png)
+
+## Cambio de acceso a la vista
+Para poder ver nuestra vista es necesario cambiar el acceso a la vista, para ello debemos dirigirnos a la carpeta de security y modificar el archivo `ir.model.access.csv` en este archivo debemos modificar la segunda linea de codigo por la siguiente:
+```
+access_openacademy_openacademy,openacademy.openacademy,model_test_model,base.group_user,1,1,1,1
+```
+Por ultimo debemos ir al archivo `__manifest__.py` y descomentar la siguiente linea de codigo:
+```
+'security/ir.model.access.csv',
+```
+Despues de realizar todos estos pasos debemos reiniciar el contenedor de odoo con el siguiente comando:
+```
+docker compose restart
+```
+Una vez reiniciado el contenedor de odoo debemos ir a la url de nuestro navegador <localhost:8069> y nos aparecera la ventana de inicio de sesion de odoo, una vez dentro de la ventana de inicio de sesion debemos ir a la pestaña de aplicaciones y buscar el modulo de openacademy, una vez encontrado el modulo debemos instalarlo y una vez instalado nos aparecera en la pestaña de aplicaciones el modulo de openacademy.
+
+![OpenAcademy.png](Imagenes/OpenAcademy.png)
+
+A contunacion iremos a la base de datos y seleccionaremos el apartado `public > tables` en este apartado podremos encontrar la tabla `test_model`.
+
+![BaseDeDatos5.png](Imagenes/BaseDeDato5.png)
+
+Para introducir datos a nuestra tabla para ello crearemos una carpeta llamada `data` y dentro de esta un archivo `datos.xml` y escribirremos el siguiente codigo para que encaje con nuestro `models.py`
+
+```
+ <odoo>
+    <data>
+        <record model="test_model" id="openacademy.nombres">
+            <field name="name">Paco</field>
+            <field name="description">69</field>
+        </record>
+    </data>
+</odoo>
+```
+
+Una vez tenemos el archivo `dato.xml` lo añadimos a nuestro `__manifest__.py` dentro de la seccion de `data` poniendo el nombre de nuestro nuevo archivo.
+
+```   
+'data': [
+        'security/ir.model.access.csv',
+        'views/views.xml',
+        'data/data.xml',
+        'views/templates.xml',
+    ],
+```
+
+Tras estos pasos reiniciaremos el contenedor y refrfescaremos la base de datos para aplicar los cambios hechos. Ahora ya podremos ver nuestra tabla con los datos introducidos anteriormente.
+
+![BaseDeDatos6.png](Imagenes/BaseDeDato6.png)
+
+Otra forma de introducir datos en nuestra tabla es mediante la interfaz de odoo para ello debemos darle al boton de `nuevo` e introducir los datod manualmente.
+
+![BaseDeDatos7.png](Imagenes/BaseDeDato7.png)
