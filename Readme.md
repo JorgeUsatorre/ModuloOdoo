@@ -84,6 +84,7 @@ Una vez creamos el modulo de openacademy nos dirigiremos a la carpeta models y d
 En este paso debemos situarnos en la carpeta de views y debemos modificar el archivo `viws.xml`. Una vez dentro del archivo debemos descomentar y modificar algunas lineas del siguiente codigo:
 
 En esta parte del codigo debemos modificar el apartado `<field name="model">` por el nombre de la tabla que hemos creado, en mi caso `test_model`
+
 ![Views.png](Imagenes/Views.png)
 
 En estaparte del codigo debemos modificar el apartado `<field name"res_model">` por el nombre de nuestra tabla, en mi caso `test_model`
